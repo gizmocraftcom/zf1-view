@@ -40,6 +40,15 @@
 class Zend_View_Stream
 {
     /**
+     * Stream context, assigned by PHP when the wrapper is opened.
+     *
+     * Declared so PHP 8.2+ does not report a dynamic property.
+     *
+     * @var resource|null
+     */
+    public $context;
+
+    /**
      * Current stream position.
      *
      * @var int
@@ -92,7 +101,28 @@ class Zend_View_Stream
          */
         $this->_stat = stat($path);
 
+        /**
+         * The converted markup can be longer than the file on disk. PHP reads
+         * only as many bytes as the stat reports, so report the converted size.
+         */
+        if (is_array($this->_stat)) {
+            $this->_stat['size'] = $this->_stat[7] = strlen($this->_data);
+        }
+
         return true;
+    }
+
+    /**
+     * Stream options are not supported (PHP calls this when including a file).
+     *
+     * @param  int $option
+     * @param  int $arg1
+     * @param  int $arg2
+     * @return bool
+     */
+    public function stream_set_option($option, $arg1, $arg2)
+    {
+        return false;
     }
 
     /**
