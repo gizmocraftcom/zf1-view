@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_View_Helper_Placeholder_Container.
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
+#[Group('Zend_View')]
+#[Group('Zend_View_Helper')]
 class Zend_View_Helper_Placeholder_ContainerTest extends PHPUnit\Framework\TestCase
 {
     /**
@@ -424,9 +425,7 @@ class Zend_View_Helper_Placeholder_ContainerTest extends PHPUnit\Framework\TestC
         $this->assertTrue((strstr($string, "\n    </ul>")) ? true : false);
     }
 
-    /**
-     * @group ZF-12044
-     */
+    #[Group('ZF-12044')]
     public function testContainerWithoutItemsShouldAlwaysReturnEmptyString()
     {
         $this->assertEquals('', (string) $this->container);

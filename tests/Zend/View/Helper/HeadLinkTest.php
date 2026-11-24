@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_View_Helper_HeadLink.
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
+#[Group('Zend_View')]
+#[Group('Zend_View_Helper')]
 class Zend_View_Helper_HeadLinkTest extends PHPUnit\Framework\TestCase
 {
     /**
@@ -365,9 +366,9 @@ class Zend_View_Helper_HeadLinkTest extends PHPUnit\Framework\TestCase
     }
 
     /**
-     * @group ZF-3928
      * @link http://framework.zend.com/issues/browse/ZF-3928
      */
+    #[Group('ZF-3928')]
     public function testTurnOffAutoEscapeDoesNotEncodeAmpersand()
     {
         $this->helper->setAutoEscape(false)->appendStylesheet('/css/rules.css?id=123&foo=bar');
@@ -395,9 +396,7 @@ class Zend_View_Helper_HeadLinkTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString(' media="screen,print"', $test);
     }
 
-    /**
-     * @group ZF-5435
-     */
+    #[Group('ZF-5435')]
     public function testContainerMaintainsCorrectOrderOfItems()
     {
         $this->helper->headLink()->offsetSetStylesheet(1, '/test1.css');
@@ -415,18 +414,14 @@ class Zend_View_Helper_HeadLinkTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $test);
     }
 
-    /**
-     * @group ZF-10345
-     */
+    #[Group('ZF-10345')]
     public function testIdAttributeIsSupported()
     {
         $this->helper->appendStylesheet(array('href' => '/bar/baz', 'id' => 'foo'));
         $this->assertStringContainsString('id="foo"', $this->helper->toString());
     }
 
-    /**
-     * @group ZF-11811
-     */
+    #[Group('ZF-11811')]
     public function testHeadLinkAllowsOverrideOfRelAttribute()
     {
         $this->helper->appendStylesheet('/css/auth.less', 'all', null, array('rel' => 'stylesheet/less'));
@@ -434,9 +429,7 @@ class Zend_View_Helper_HeadLinkTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('rel="stylesheet/less"', $this->helper->toString());
     }
 
-    /**
-     * @group ZF-11643
-     */
+    #[Group('ZF-11643')]
     public function testSizesAttributeIsSupported()
     {
         $this->helper->headLink(
@@ -453,9 +446,7 @@ class Zend_View_Helper_HeadLinkTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $this->helper->toString());
     }
 
-    /**
-     * @group GH-515
-     */
+    #[Group('GH-515')]
     public function testConditionalStylesheetCreationNoIE()
     {
         $this->helper->setStylesheet('/styles.css', 'screen', '!IE');
@@ -468,9 +459,7 @@ class Zend_View_Helper_HeadLinkTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('<!--<![endif]-->', $string);
     }
 
-    /**
-     * @group GH-515
-     */
+    #[Group('GH-515')]
     public function testConditionalStylesheetCreationNoIEWidthSpaces()
     {
         $this->helper->setStylesheet('/styles.css', 'screen', '! IE');

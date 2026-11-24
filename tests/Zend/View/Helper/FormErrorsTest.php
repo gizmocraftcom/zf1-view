@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_View_Helper_FormErrors
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
+#[Group('Zend_View')]
+#[Group('Zend_View_Helper')]
 class Zend_View_Helper_FormErrorsTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -145,9 +146,9 @@ class Zend_View_Helper_FormErrorsTest extends PHPUnit\Framework\TestCase
     }
 
     /**
-     * @group ZF-3477
      * @link http://framework.zend.com/issues/browse/ZF-3477
      */
+    #[Group('ZF-3477')]
     public function testCanSetClassAttribute()
     {
         $options    = array('class' => 'custom-class');
@@ -158,9 +159,7 @@ class Zend_View_Helper_FormErrorsTest extends PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-5962
-     */
+    #[Group('ZF-5962')]
     public function testCanSetElementStringsPerOptions()
     {
         $actual = $this->helper->formErrors(

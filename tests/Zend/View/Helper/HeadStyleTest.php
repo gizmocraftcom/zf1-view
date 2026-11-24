@@ -20,6 +20,8 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_View_Helper_HeadStyle.
@@ -29,9 +31,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
+#[Group('Zend_View')]
+#[Group('Zend_View_Helper')]
 class Zend_View_Helper_HeadStyleTest extends PHPUnit\Framework\TestCase
 {
     /**
@@ -217,9 +219,7 @@ class Zend_View_Helper_HeadStyleTest extends PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('#<style [^>]*?media="screen"#', $value, $value);
     }
 
-    /**
-     * @group ZF-8056
-     */
+    #[Group('ZF-8056')]
     public function testMediaAttributeCanHaveSpaceInCommaSeparatedString()
     {
         $this->helper->appendStyle('a { }', array('media' => 'screen, projection'));
@@ -322,9 +322,7 @@ h1 {
         $this->assertStringContainsString('    }', $string);
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testSerialCapturingWorks()
     {
         $this->helper->headStyle()->captureStart();
@@ -395,9 +393,7 @@ a {
         $this->assertStringContainsString('<!--[if lt IE 7]>', $test);
     }
 
-    /**
-     * @group ZF-5435
-     */
+    #[Group('ZF-5435')]
     public function testContainerMaintainsCorrectOrderOfItems()
     {
         $style1 = 'a {display: none;}';
@@ -421,9 +417,7 @@ a {
         $this->assertEquals($expected, $test);
     }
 
-    /**
-     * @group ZF-9532
-     */
+    #[Group('ZF-9532')]
     public function testRenderConditionalCommentsShouldNotContainHtmlEscaping()
     {
         $style = 'a{display:none;}';
@@ -436,9 +430,7 @@ a {
         $this->assertStringNotContainsString(PHP_EOL . '-->', $value);
     }
 
-    /**
-     * @group GH-515
-     */
+    #[Group('GH-515')]
     public function testConditionalScriptNoIE()
     {
         $this->helper->appendStyle('
@@ -450,9 +442,7 @@ a {
         $this->assertStringContainsString('<!--<![endif]-->', $test);
     }
 
-    /**
-     * @group GH-515
-     */
+    #[Group('GH-515')]
     public function testConditionalScriptNoIEWidthSpace()
     {
         $this->helper->appendStyle('

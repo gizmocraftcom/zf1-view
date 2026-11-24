@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Zend_View_Helper_FormRadioTest
@@ -31,9 +32,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
+#[Group('Zend_View')]
+#[Group('Zend_View_Helper')]
 class Zend_View_Helper_FormRadioTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -93,9 +94,7 @@ class Zend_View_Helper_FormRadioTest extends PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-3206
-     */
+    #[Group('ZF-3206')]
     public function testSpecifyingLabelPlacementShouldNotOverwriteValue()
     {
         $options = array(
@@ -347,9 +346,7 @@ class Zend_View_Helper_FormRadioTest extends PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-5681
-     */
+    #[Group('ZF-5681')]
     public function testRadioLabelDoesNotContainHardCodedStyle()
     {
         $options = array(
@@ -365,9 +362,7 @@ class Zend_View_Helper_FormRadioTest extends PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString('style="white-space: nowrap;"', $html);
     }
 
-    /**
-     * @group ZF-8709
-     */
+    #[Group('ZF-8709')]
     public function testRadioLabelContainsNotForAttributeTag()
     {
         $actual = $this->helper->formRadio(
@@ -387,9 +382,7 @@ class Zend_View_Helper_FormRadioTest extends PHPUnit\Framework\TestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @group ZF-4191
-     */
+    #[Group('ZF-4191')]
     public function testDashesShouldNotBeFilteredFromId()
     {
         $name    = 'Foo';
@@ -411,9 +404,7 @@ class Zend_View_Helper_FormRadioTest extends PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('/<input([^>]*)(id="' . $name . '--1")([^>]*)(checked="checked")/', $html);
     }
 
-    /**
-     * @group ZF-11477
-     */
+    #[Group('ZF-11477')]
     public function testRendersAsHtmlByDefault()
     {
         $options = array(
@@ -431,9 +422,7 @@ class Zend_View_Helper_FormRadioTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('value="baz">', $html);
     }
 
-    /**
-     * @group ZF-11477
-     */
+    #[Group('ZF-11477')]
     public function testCanRendersAsXHtml()
     {
         $this->view->doctype('XHTML1_STRICT');
@@ -451,9 +440,7 @@ class Zend_View_Helper_FormRadioTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('value="baz" />', $html);
     }
 
-    /**
-     * @group ZF-11620
-     */
+    #[Group('ZF-11620')]
     public function testSeparatorCanRendersAsXhtmlByDefault()
     {
         $this->view->doctype('XHTML1_STRICT');
@@ -473,9 +460,7 @@ class Zend_View_Helper_FormRadioTest extends PHPUnit\Framework\TestCase
         $this->assertEquals(2, $count);
     }
 
-    /**
-     * @group ZF-11620
-     */
+    #[Group('ZF-11620')]
     public function testeparatorCanRendersAsHtml()
     {
         $this->view->doctype('HTML4_STRICT');

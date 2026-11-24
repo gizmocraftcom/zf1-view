@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_View_Helper_FormImage.
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
+#[Group('Zend_View')]
+#[Group('Zend_View_Helper')]
 class Zend_View_Helper_FormImageTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -79,9 +80,7 @@ class Zend_View_Helper_FormImageTest extends PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('/<input[^>]*?type="image"/', $button);
     }
 
-    /**
-     * @group ZF-11477
-     */
+    #[Group('ZF-11477')]
     public function testRendersAsHtmlByDefault()
     {
         $test = $this->helper->formImage(array(
@@ -90,9 +89,7 @@ class Zend_View_Helper_FormImageTest extends PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString(' />', $test);
     }
 
-    /**
-     * @group ZF-11477
-     */
+    #[Group('ZF-11477')]
     public function testCanRendersAsXHtml()
     {
         $this->view->doctype('XHTML1_STRICT');

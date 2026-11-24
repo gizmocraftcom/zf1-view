@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,9 +28,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
+#[Group('Zend_View')]
+#[Group('Zend_View_Helper')]
 class Zend_View_Helper_HtmlListTest extends PHPUnit\Framework\TestCase
 {
     /**
@@ -174,9 +175,7 @@ class Zend_View_Helper_HtmlListTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('<li>one <b>small</b> test</li>', $list);
     }
 
-    /**
-     * @group ZF-2527
-     */
+    #[Group('ZF-2527')]
     public function testEscapeFlagHonoredForMultidimensionalLists()
     {
         $items = array('<b>one</b>', array('<b>four</b>', '<b>five</b>', '<b>six</b>'), '<b>two</b>', '<b>three</b>');
@@ -189,9 +188,9 @@ class Zend_View_Helper_HtmlListTest extends PHPUnit\Framework\TestCase
     }
 
     /**
-     * @group ZF-2527
      * Added the s modifier to match newlines after @see ZF-5018
      */
+    #[Group('ZF-2527')]
     public function testAttribsPassedIntoMultidimensionalLists()
     {
         $items = array('one', array('four', 'five', 'six'), 'two', 'three');

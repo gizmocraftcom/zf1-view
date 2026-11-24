@@ -21,6 +21,7 @@
  * @version    $Id: UserAgentTest.php $
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Zend_View_Helper_UserAgentTest
@@ -30,9 +31,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
+#[Group('Zend_View')]
+#[Group('Zend_View_Helper')]
 class Zend_View_Helper_UserAgentTest extends PHPUnit\Framework\TestCase
 {
 
@@ -63,8 +64,8 @@ class Zend_View_Helper_UserAgentTest extends PHPUnit\Framework\TestCase
         );
         $this->helper->userAgent($this->userAgent);
         $this->assertEquals(
-            spl_object_hash($this->userAgent),
-            spl_object_hash($this->helper->getUserAgent())
+            spl_object_id($this->userAgent),
+            spl_object_id($this->helper->getUserAgent())
         );
     }
 
@@ -79,8 +80,8 @@ class Zend_View_Helper_UserAgentTest extends PHPUnit\Framework\TestCase
     {
         $this->helper->setUserAgent($this->userAgent);
         $this->assertEquals(
-            spl_object_hash($this->userAgent),
-            spl_object_hash($this->helper->getUserAgent())
+            spl_object_id($this->userAgent),
+            spl_object_id($this->helper->getUserAgent())
         );
     }
 }

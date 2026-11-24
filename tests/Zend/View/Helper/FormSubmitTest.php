@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_View_Helper_FormSubmit.
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
+#[Group('Zend_View')]
+#[Group('Zend_View_Helper')]
 class Zend_View_Helper_FormSubmitTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -112,9 +113,7 @@ class Zend_View_Helper_FormSubmitTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString(' />', $test);
     }
 
-    /**
-     * @group ZF-10529
-     */
+    #[Group('ZF-10529')]
     public function testDoesNotOutputEmptyId()
     {
         $test = $this->helper->formSubmit('', 'bar');

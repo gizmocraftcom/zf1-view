@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_View_Helper_Fieldset
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
+#[Group('Zend_View')]
+#[Group('Zend_View_Helper')]
 class Zend_View_Helper_FieldsetTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -76,9 +77,7 @@ class Zend_View_Helper_FieldsetTest extends PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('#<legend>Great Scott!</legend>#', $html);
     }
 
-    /**
-     * @group ZF-2913
-     */
+    #[Group('ZF-2913')]
     public function testEmptyLegendShouldNotRenderLegendTag()
     {
         foreach (array(null, '', ' ', false) as $legend) {
@@ -87,9 +86,7 @@ class Zend_View_Helper_FieldsetTest extends PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-3632
-     */
+    #[Group('ZF-3632')]
     public function testHelperShouldAllowDisablingEscapingOfLegend()
     {
         $html = $this->helper->fieldset('foo', 'foobar', array('legend' => '<b>Great Scott!</b>', 'escape' => false));

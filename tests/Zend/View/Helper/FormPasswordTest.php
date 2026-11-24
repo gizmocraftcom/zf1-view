@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Zend_View_Helper_FormPasswordTest
@@ -31,9 +32,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
+#[Group('Zend_View')]
+#[Group('Zend_View_Helper')]
 class Zend_View_Helper_FormPasswordTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -56,9 +57,7 @@ class Zend_View_Helper_FormPasswordTest extends PHPUnit\Framework\TestCase
         $this->helper->setView($this->view);
     }
 
-    /**
-     * @group ZF-1666
-     */
+    #[Group('ZF-1666')]
     public function testCanDisableElement()
     {
         $html = $this->helper->formPassword(array(
@@ -70,9 +69,7 @@ class Zend_View_Helper_FormPasswordTest extends PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('/<input[^>]*?(disabled="disabled")/', $html);
     }
 
-    /**
-     * @group ZF-1666
-     */
+    #[Group('ZF-1666')]
     public function testDisablingElementDoesNotRenderHiddenElements()
     {
         $html = $this->helper->formPassword(array(
@@ -103,18 +100,14 @@ class Zend_View_Helper_FormPasswordTest extends PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString('bar', $test);
     }
 
-    /**
-     * @group ZF-2860
-     */
+    #[Group('ZF-2860')]
     public function testShouldRenderValueWhenRenderPasswordFlagPresentAndTrue()
     {
         $test = $this->helper->formPassword('foo', 'bar', array('renderPassword' => true));
         $this->assertStringContainsString('value="bar"', $test);
     }
 
-    /**
-     * @group ZF-2860
-     */
+    #[Group('ZF-2860')]
     public function testRenderPasswordAttribShouldNeverBeRendered()
     {
         $test = $this->helper->formPassword('foo', 'bar', array('renderPassword' => true));

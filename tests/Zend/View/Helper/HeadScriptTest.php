@@ -20,6 +20,8 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_View_Helper_HeadScript.
@@ -29,9 +31,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
+#[Group('Zend_View')]
+#[Group('Zend_View_Helper')]
 class Zend_View_Helper_HeadScriptTest extends PHPUnit\Framework\TestCase
 {
     /**
@@ -354,9 +356,7 @@ document.write(bar.strlen());');
         $this->assertStringContainsString('bogus="deferred"', $test);
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testCanPerformMultipleSerialCaptures()
     {
         $this->helper->headScript()->captureStart();
@@ -386,9 +386,9 @@ document.write(bar.strlen());');
     }
 
     /**
-     * @group ZF-3928
      * @link http://framework.zend.com/issues/browse/ZF-3928
      */
+    #[Group('ZF-3928')]
     public function testTurnOffAutoEscapeDoesNotEncodeAmpersand()
     {
         $this->helper->setAutoEscape(false)->appendFile('test.js?id=123&foo=bar');
@@ -410,9 +410,7 @@ document.write(bar.strlen());');
         $this->assertStringContainsString('    <!--[if lt IE 7]>', $test);
     }
 
-    /**
-     * @group ZF-5435
-     */
+    #[Group('ZF-5435')]
     public function testContainerMaintainsCorrectOrderOfItems()
     {
         $this->helper->offsetSetFile(1, 'test1.js');
@@ -431,9 +429,7 @@ document.write(bar.strlen());');
         $this->assertEquals($expected, $test);
     }
 
-    /**
-     * @group ZF-12048
-     */
+    #[Group('ZF-12048')]
     public function testSetFileStillOverwritesExistingFilesWhenItsADuplicate()
     {
         $this->helper->appendFile('foo.js');
@@ -445,9 +441,7 @@ document.write(bar.strlen());');
         $this->assertEquals($expected, $test);
     }
 
-    /**
-     * @group ZF-12287
-     */
+    #[Group('ZF-12287')]
     public function testConditionalWithAllowArbitraryAttributesDoesNotIncludeConditionalScript()
     {
         $this->helper->setAllowArbitraryAttributes(true);
@@ -461,9 +455,7 @@ document.write(bar.strlen());');
         $this->assertStringNotContainsString('conditional', $test);
     }
 
-    /**
-     * @group ZF-12287
-     */
+    #[Group('ZF-12287')]
     public function testNoEscapeWithAllowArbitraryAttributesDoesNotIncludeNoEscapeScript()
     {
         $this->helper->setAllowArbitraryAttributes(true);
@@ -477,9 +469,7 @@ document.write(bar.strlen());');
         $this->assertStringNotContainsString('noescape', $test);
     }
 
-    /**
-     * @group ZF-12287
-     */
+    #[Group('ZF-12287')]
     public function testNoEscapeDefaultsToFalse()
     {
         $this->helper->appendScript(
@@ -493,9 +483,7 @@ document.write(bar.strlen());');
         $this->assertStringContainsString('//-->', $test);
     }
 
-    /**
-     * @group ZF-12287
-     */
+    #[Group('ZF-12287')]
     public function testNoEscapeTrue()
     {
         $this->helper->appendScript(
@@ -509,9 +497,7 @@ document.write(bar.strlen());');
         $this->assertStringNotContainsString('//-->', $test);
     }
 
-    /**
-     * @group GH-515
-     */
+    #[Group('GH-515')]
     public function testConditionalScriptNoIE()
     {
         $this->helper->setAllowArbitraryAttributes(true);

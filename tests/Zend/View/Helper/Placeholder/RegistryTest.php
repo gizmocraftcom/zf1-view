@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_View_Helper_Placeholder_Registry.
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
+#[Group('Zend_View')]
+#[Group('Zend_View_Helper')]
 class Zend_View_Helper_Placeholder_RegistryTest extends PHPUnit\Framework\TestCase
 {
     /**
@@ -186,9 +187,7 @@ class Zend_View_Helper_Placeholder_RegistryTest extends PHPUnit\Framework\TestCa
         $this->assertSame($registry, $registered);
     }
 
-    /**
-     * @group ZF-10793
-     */
+    #[Group('ZF-10793')]
     public function testSetValueCreateContainer()
     {
         $this->registry->setContainerClass('Zend_View_Helper_Placeholder_RegistryTest_Container');

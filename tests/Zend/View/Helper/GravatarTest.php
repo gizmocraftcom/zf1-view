@@ -20,6 +20,8 @@
  * @version    $Id: BaseUrlTest.php 20096 2010-01-06 02:05:09Z bkarwin $
  */
 
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,9 +29,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
+#[Group('Zend_View')]
+#[Group('Zend_View_Helper')]
 class Zend_View_Helper_GravatarTest extends PHPUnit\Framework\TestCase
 {
     /**
@@ -276,9 +278,7 @@ class Zend_View_Helper_GravatarTest extends PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testInvalidKeyPassedToSetOptionsMethod()
     {
         $options = array(

@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_View_Helper_FormLabel.
@@ -30,9 +31,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
+#[Group('Zend_View')]
+#[Group('Zend_View_Helper')]
 class Zend_View_Helper_FormLabelTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -93,9 +94,7 @@ class Zend_View_Helper_FormLabelTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('<label for="id">value</label>', $label);
     }
 
-    /**
-     * @group ZF-2473
-     */
+    #[Group('ZF-2473')]
     public function testCanDisableEscapingLabelValue()
     {
         $label = $this->helper->formLabel('foo', '<b>Label This!</b>', array('escape' => false));
@@ -106,18 +105,14 @@ class Zend_View_Helper_FormLabelTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('<b>Label This!</b>', $label);
     }
 
-    /**
-     * @group ZF-6426
-     */
+    #[Group('ZF-6426')]
     public function testHelperShouldAllowSuppressionOfForAttribute()
     {
         $label = $this->helper->formLabel('foo', 'bar', array('disableFor' => true));
         $this->assertStringNotContainsString('for="foo"', $label);
     }
 
-    /**
-     * @group ZF-8265
-     */
+    #[Group('ZF-8265')]
     public function testShouldNotRenderDisableForAttributeIfForIsSuppressed()
     {
         $label = $this->helper->formLabel('foo', 'bar', array('disableFor' => true));

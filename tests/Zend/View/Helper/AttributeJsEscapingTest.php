@@ -20,6 +20,7 @@
  * @version    $Id: FormSubmitTest.php 23772 2011-02-28 21:35:29Z ralph $
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_View_Helper_HtmlElement JS Escaping.
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
+#[Group('Zend_View')]
+#[Group('Zend_View_Helper')]
 class Zend_View_Helper_AttributeJsEscapingTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -66,9 +67,7 @@ class Zend_View_Helper_AttributeJsEscapingTest extends PHPUnit\Framework\TestCas
     }
 
 
-    /**
-     * @group ZF-9926
-     */
+    #[Group('ZF-9926')]
     public function testRendersSubmitInput()
     {
         $html = $this->helper->formSubmit(array(

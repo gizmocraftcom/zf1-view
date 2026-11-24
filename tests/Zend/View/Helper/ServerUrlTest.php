@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Tests Zend_View_Helper_ServerUrl
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
+#[Group('Zend_View')]
+#[Group('Zend_View_Helper')]
 class Zend_View_Helper_ServerUrlTest extends PHPUnit\Framework\TestCase
 {
     /**
@@ -151,9 +152,7 @@ class Zend_View_Helper_ServerUrlTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('http://example.com', $url->serverUrl(new stdClass()));
     }
 
-    /**
-     * @group ZF-9919
-     */
+    #[Group('ZF-9919')]
     public function testServerUrlWithScheme()
     {
         $_SERVER['HTTP_SCHEME'] = 'https';
@@ -162,9 +161,7 @@ class Zend_View_Helper_ServerUrlTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('https://example.com', $url->serverUrl());
     }
 
-    /**
-     * @group ZF-9919
-     */
+    #[Group('ZF-9919')]
     public function testServerUrlWithPort()
     {
         $_SERVER['SERVER_PORT'] = 443;

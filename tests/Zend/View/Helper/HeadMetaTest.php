@@ -20,6 +20,8 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Depends;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_View_Helper_HeadMeta.
@@ -29,9 +31,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
+#[Group('Zend_View')]
+#[Group('Zend_View_Helper')]
 class Zend_View_Helper_HeadMetaTest extends PHPUnit\Framework\TestCase
 {
     /**
@@ -280,14 +282,16 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('name="title" content="boo bah"', $string);
     }
 
-    /**
-     * @group ZF-6637
-     */
+    #[Group('ZF-6637')]
     public function testToStringWhenInvalidKeyProvidedShouldConvertThrownException()
     {
         $this->helper->headMeta('some-content', 'tag value', 'not allowed key');
         set_error_handler(array($this, 'handleErrors'));
-        $string = @$this->helper->toString();
+        try {
+            $string = @$this->helper->toString();
+        } finally {
+            restore_error_handler();
+        }
         $this->assertEquals('', $string);
         $this->assertIsString($this->error);
     }
@@ -336,9 +340,7 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('foo', $test);
     }
 
-    /**
-     * @group ZF-9743
-     */
+    #[Group('ZF-9743')]
     public function testPropertyIsSupportedWithRdfaDoctype()
     {
         $this->view->doctype('XHTML1_RDFA');
@@ -349,9 +351,7 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-9743
-     */
+    #[Group('ZF-9743')]
     public function testPropertyIsNotSupportedByDefaultDoctype()
     {
         try {
@@ -362,39 +362,31 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-9743
-     * @depends testPropertyIsSupportedWithRdfaDoctype
-     */
+    #[Group('ZF-9743')]
+    #[Depends('testPropertyIsSupportedWithRdfaDoctype')]
     public function testOverloadingAppendPropertyAppendsMetaTagToStack()
     {
         $this->view->doctype('XHTML1_RDFA');
         $this->_testOverloadAppend('property');
     }
 
-    /**
-     * @group ZF-9743
-     * @depends testPropertyIsSupportedWithRdfaDoctype
-     */
+    #[Group('ZF-9743')]
+    #[Depends('testPropertyIsSupportedWithRdfaDoctype')]
     public function testOverloadingPrependPropertyPrependsMetaTagToStack()
     {
         $this->view->doctype('XHTML1_RDFA');
         $this->_testOverloadPrepend('property');
     }
 
-    /**
-     * @group ZF-9743
-     * @depends testPropertyIsSupportedWithRdfaDoctype
-     */
+    #[Group('ZF-9743')]
+    #[Depends('testPropertyIsSupportedWithRdfaDoctype')]
     public function testOverloadingSetPropertyOverwritesMetaTagStack()
     {
         $this->view->doctype('XHTML1_RDFA');
         $this->_testOverloadSet('property');
     }
 
-    /**
-     * @group ZF-2663
-     */
+    #[Group('ZF-2663')]
     public function testSetNameDoesntClobber()
     {
         $view = new Zend_View();
@@ -409,9 +401,7 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-2663
-     */
+    #[Group('ZF-2663')]
     public function testSetNameDoesntClobberPart2()
     {
         $view = new Zend_View();
@@ -428,9 +418,9 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit\Framework\TestCase
     }
 
     /**
-     * @group ZF-3780
      * @link http://framework.zend.com/issues/browse/ZF-3780
      */
+    #[Group('ZF-3780')]
     public function testPlacesMetaTagsInProperOrder()
     {
         $view = new Zend_View();
@@ -443,9 +433,7 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-5435
-     */
+    #[Group('ZF-5435')]
     public function testContainerMaintainsCorrectOrderOfItems()
     {
         $this->helper->offsetSetName(1, 'keywords', 'foo');
@@ -463,9 +451,7 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $test);
     }
 
-    /**
-     * @group ZF-7722
-     */
+    #[Group('ZF-7722')]
     public function testCharsetValidateFail()
     {
         $view = new Zend_View();
@@ -475,9 +461,7 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit\Framework\TestCase
         $view->headMeta()->setCharset('utf-8');
     }
 
-    /**
-     * @group ZF-7722
-     */
+    #[Group('ZF-7722')]
     public function testCharset()
     {
         $view = new Zend_View();
@@ -497,9 +481,7 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-11835
-     */
+    #[Group('ZF-11835')]
     public function testConditional()
     {
         $html = $this->helper->appendHttpEquiv('foo', 'bar', array('conditional' => 'lt IE 7'))->toString();
@@ -508,9 +490,7 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression("|<!\[endif\]-->$|", $html);
     }
 
-    /**
-     * @group ZF-11910
-     */
+    #[Group('ZF-11910')]
     public function testStandaloneInstantiationWithoutViewDoesNotCauseFatalError()
     {
         $expected = '<meta name="foo" content="bar" />';
@@ -519,9 +499,7 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $result);
     }
 
-    /**
-     * @group GH-515
-     */
+    #[Group('GH-515')]
     public function testConditionalNoIE()
     {
         $html = $this->helper->appendHttpEquiv('foo', 'bar', array('conditional' => '!IE'))->toString();
@@ -529,9 +507,7 @@ class Zend_View_Helper_HeadMetaTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('<!--<![endif]-->', $html);
     }
 
-    /**
-     * @group GH-515
-     */
+    #[Group('GH-515')]
     public function testConditionalNoIEWidthSpace()
     {
         $html = $this->helper->appendHttpEquiv('foo', 'bar', array('conditional' => '! IE'))->toString();

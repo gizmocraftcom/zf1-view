@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Zend_View_Helper_FormCheckboxTest
@@ -31,9 +32,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
+#[Group('Zend_View')]
+#[Group('Zend_View_Helper')]
 class Zend_View_Helper_FormCheckboxTest extends PHPUnit\Framework\TestCase
 {
     protected $view;
@@ -126,9 +127,7 @@ class Zend_View_Helper_FormCheckboxTest extends PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('/<input[^>]*?(id="foo-bar-baz")/', $html);
     }
 
-    /**
-     * @group ZF-2230
-     */
+    #[Group('ZF-2230')]
     public function testDoesNotRenderHiddenElementsForCheckboxArray()
     {
         $html = $this->helper->formCheckbox(array(
@@ -138,9 +137,7 @@ class Zend_View_Helper_FormCheckboxTest extends PHPUnit\Framework\TestCase
         $this->assertDoesNotMatchRegularExpression('/<input[^>]*?(type="hidden")/', $html);
     }
 
-    /**
-     * @group ZF-3149
-     */
+    #[Group('ZF-3149')]
     public function testShouldRenderHiddenElementShowingUncheckedOptionForNonArrayNames()
     {
         $html1 = $this->helper->formCheckbox(
@@ -195,9 +192,7 @@ class Zend_View_Helper_FormCheckboxTest extends PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-3149
-     */
+    #[Group('ZF-3149')]
     public function testCheckedAttributeNotRenderedIfItEvaluatesToFalse()
     {
         $test = $this->helper->formCheckbox('foo', 'value', array('checked' => false));
@@ -210,9 +205,7 @@ class Zend_View_Helper_FormCheckboxTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('value="bar"', $test);
     }
 
-    /**
-     * @group ZF-3149
-     */
+    #[Group('ZF-3149')]
     public function testShouldCheckValueIfValueMatchesCheckedOption()
     {
         $test = $this->helper->formCheckbox('foo', 'bar', array(), array('bar', 'baz'));
@@ -224,18 +217,14 @@ class Zend_View_Helper_FormCheckboxTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('checked', $test);
     }
 
-    /**
-     * @group ZF-3149
-     */
+    #[Group('ZF-3149')]
     public function testShouldOnlySetValueIfValueMatchesCheckedOption()
     {
         $test = $this->helper->formCheckbox('foo', 'baz', array(), array('bar', 'baz'));
         $this->assertStringContainsString('value="bar"', $test);
     }
 
-    /**
-     * @group ZF-3149
-     */
+    #[Group('ZF-3149')]
     public function testShouldNotCheckValueIfValueDoesNotMatchCheckedOption()
     {
         $test = $this->helper->formCheckbox('foo', 'baz', array(), array('bar', 'baz'));
@@ -256,9 +245,7 @@ class Zend_View_Helper_FormCheckboxTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString(' />', $test);
     }
 
-    /**
-     * @group ZF-6467
-     */
+    #[Group('ZF-6467')]
     public function testShouldNotShowHiddenFieldIfDisableIsTrue()
     {
         $test = $this->helper->formCheckbox('foo', 'bar', array('disable' => true));
@@ -286,9 +273,7 @@ class Zend_View_Helper_FormCheckboxTest extends PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString('checked="checked"', $test);
     }
 
-    /**
-     * @group ZF-6624
-     */
+    #[Group('ZF-6624')]
     public function testRenderingWithoutHiddenElement()
     {
         $html = $this->helper->formCheckbox(

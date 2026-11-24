@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_View_Helper_HeadTitle.
@@ -29,9 +30,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_View
- * @group      Zend_View_Helper
  */
+#[Group('Zend_View')]
+#[Group('Zend_View_Helper')]
 class Zend_View_Helper_HeadTitleTest extends PHPUnit\Framework\TestCase
 {
     /**
@@ -159,9 +160,9 @@ class Zend_View_Helper_HeadTitleTest extends PHPUnit\Framework\TestCase
     }
 
     /**
-     * @group ZF-2918
      * @link http://framework.zend.com/issues/browse/ZF-2918
      */
+    #[Group('ZF-2918')]
     public function testZF2918()
     {
         $this->helper->headTitle('Some Title');
@@ -172,9 +173,9 @@ class Zend_View_Helper_HeadTitleTest extends PHPUnit\Framework\TestCase
     }
 
     /**
-     * @group ZF-3577
      * @link http://framework.zend.com/issues/browse/ZF-3577
      */
+    #[Group('ZF-3577')]
     public function testZF3577()
     {
         $this->helper->setAutoEscape(true);
@@ -194,9 +195,7 @@ class Zend_View_Helper_HeadTitleTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('<title>Message 1 (en)</title>', $this->helper->toString());
     }
 
-    /**
-     * @group ZF-8036
-     */
+    #[Group('ZF-8036')]
     public function testHeadTitleZero()
     {
         $this->helper->headTitle('0');
@@ -211,9 +210,7 @@ class Zend_View_Helper_HeadTitleTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('BarFoo', $placeholder->toString());
     }
 
-    /**
-     * @group ZF-10284
-     */
+    #[Group('ZF-10284')]
     public function testReturnTypeDefaultAttachOrder()
     {
         $this->assertTrue($this->helper->setDefaultAttachOrder('PREPEND') instanceof  Zend_View_Helper_HeadTitle);
