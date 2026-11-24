@@ -1,5 +1,5 @@
 {
-    "name": "diablomedia/zendframework1-view",
+    "name": "gizmocraft/zendframework1-view",
     "description": "Zend Framework 1 View component",
     "type": "library",
     "keywords": [
@@ -9,17 +9,95 @@
     "homepage": "http://framework.zend.com/",
     "license": "BSD-3-Clause",
     "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/gizmocraftcom/zf1-currency"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gizmocraftcom/zf1-exception"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gizmocraftcom/zf1-loader"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gizmocraftcom/zf1-config"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gizmocraftcom/zf1-json"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gizmocraftcom/zf1-xml"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gizmocraftcom/zf1-server"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gizmocraftcom/zf1-cache"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gizmocraftcom/zf1-log"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gizmocraftcom/zf1-locale"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gizmocraftcom/zf1-registry"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gizmocraftcom/zf1-filter"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gizmocraftcom/zf1-crypt"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gizmocraftcom/zf1-date"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gizmocraftcom/zf1-http"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gizmocraftcom/zf1-session"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gizmocraftcom/zf1-uri"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gizmocraftcom/zf1-validate"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/gizmocraftcom/zf1-translate"
+        }
+    ],
     "require": {
-        "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0",
-        "diablomedia/zendframework1-currency": "^1.0.5",
-        "diablomedia/zendframework1-exception": "^1.1.1",
-        "diablomedia/zendframework1-filter": "^1.0.8",
-        "diablomedia/zendframework1-http": "^1.0.5",
-        "diablomedia/zendframework1-json": "^1.0.7",
-        "diablomedia/zendframework1-loader": "^1.0.5",
-        "diablomedia/zendframework1-locale": "^1.0.6",
-        "diablomedia/zendframework1-registry": "^1.0.5",
-        "diablomedia/zendframework1-translate": "^1.0.5"
+        "php": ">=8.5",
+        "gizmocraft/zendframework1-currency": "^2.0.0",
+        "gizmocraft/zendframework1-exception": "^2.0.0",
+        "gizmocraft/zendframework1-filter": "^2.0.0",
+        "gizmocraft/zendframework1-http": "^2.0.0",
+        "gizmocraft/zendframework1-json": "^2.0.0",
+        "gizmocraft/zendframework1-loader": "^2.0.0",
+        "gizmocraft/zendframework1-locale": "^2.0.0",
+        "gizmocraft/zendframework1-registry": "^2.0.0",
+        "gizmocraft/zendframework1-translate": "^2.0.0"
     },
     "autoload": {
         "psr-0": {
@@ -56,13 +134,13 @@
         "style-check": "php-cs-fixer fix --dry-run -vv"
     },
     "suggest": {
-        "diablomedia/zendframework1-view-helper-paginationcontrol": "For the PaginationControl View Helper",
-        "diablomedia/zendframework1-view-helper-navigation": "For the Navigation View Helper",
-        "diablomedia/zendframework1-view-helper-layout": "For the Layout View Helper",
-        "diablomedia/zendframework1-view-helper-action": "For the Action View Helper",
-        "diablomedia/zendframework1-view-helper-partial": "For the Partial and PartialLoop View Helpers",
-        "diablomedia/zendframework1-view-helper-url": "For the Url View Helper",
-        "diablomedia/zendframework1-view-helper-baseurl": "For the BaseUrl View Helper",
+        "gizmocraft/zendframework1-view-helper-paginationcontrol": "For the PaginationControl View Helper",
+        "gizmocraft/zendframework1-view-helper-navigation": "For the Navigation View Helper",
+        "gizmocraft/zendframework1-view-helper-layout": "For the Layout View Helper",
+        "gizmocraft/zendframework1-view-helper-action": "For the Action View Helper",
+        "gizmocraft/zendframework1-view-helper-partial": "For the Partial and PartialLoop View Helpers",
+        "gizmocraft/zendframework1-view-helper-url": "For the Url View Helper",
+        "gizmocraft/zendframework1-view-helper-baseurl": "For the BaseUrl View Helper",
         "ext-filter": "Used in the HeadScript View Helper"
     },
     "config": {
